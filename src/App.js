@@ -13,43 +13,32 @@ function App() {
     read: [],
   });
 
-  // Carregar livros e distribuí-los nas prateleiras
   useEffect(() => {
-    
     const loadBooks = async () => {
       const allBooks = await fetchBooks();
-      setBooks(allBooks);
-      console.log(allBooks); // Verifique se há dados retornados da API
-      
-      const updatedShelves = {
-        currentlyReading: allBooks.filter((book) => book.shelf === 'currentlyReading'),
-        wantToRead: allBooks.filter((book) => book.shelf === 'wantToRead'),
-        read: allBooks.filter((book) => book.shelf === 'read'),
-      };
-      setShelves(updatedShelves);
+      if (Array.isArray(allBooks)) {
+        const updatedShelves = {
+          currentlyReading: allBooks.filter((book) => book.shelf === 'currentlyReading'),
+          wantToRead: allBooks.filter((book) => book.shelf === 'wantToRead'),
+          read: allBooks.filter((book) => book.shelf === 'read'),
+        };
+        setShelves(updatedShelves);
+        setBooks(allBooks);
+      }
     };
 
     loadBooks();
   }, []);
 
-  // Armazenar prateleiras no LocalStorage a cada atualização
-  useEffect(() => {
-    localStorage.setItem('shelves', JSON.stringify(shelves));
-  }, [shelves]);
-
-  // Mover livro entre prateleiras
   const moveBook = (bookId, shelfName) => {
     setShelves((prevShelves) => {
       const updatedShelves = { ...prevShelves };
       const bookToMove = books.find((book) => book.id === bookId);
       if (!bookToMove) return prevShelves;
 
-      // Remover o livro de outras prateleiras
       Object.keys(updatedShelves).forEach((shelf) => {
         updatedShelves[shelf] = updatedShelves[shelf].filter((book) => book.id !== bookId);
       });
-
-      // Adicionar o livro na nova prateleira
       updatedShelves[shelfName].push({ ...bookToMove, shelf: shelfName });
       return updatedShelves;
     });
@@ -58,9 +47,21 @@ function App() {
   return (
     <Router>
       <div>
-        <nav>
-          <Link to="/">Home</Link>
-          <Link to="/search">Search</Link>
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <a className="navbar-brand" href="#">Estante de Livros</a>
+          <div className="collapse navbar-collapse">
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <Link className="nav-link" to="/">Início</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/search">Pesquisa</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/shelf">Prateleira</Link>
+              </li>
+            </ul>
+          </div>
         </nav>
 
         <Routes>
@@ -70,9 +71,9 @@ function App() {
             path="/shelf"
             element={
               <div>
-                <Shelf title="Currently Reading" books={shelves.currentlyReading} onMoveBook={moveBook} />
-                <Shelf title="Want to Read" books={shelves.wantToRead} onMoveBook={moveBook} />
-                <Shelf title="Read" books={shelves.read} onMoveBook={moveBook} />
+                <Shelf title="Lendo atualmente" books={shelves.currentlyReading} onMoveBook={moveBook} />
+                <Shelf title="Quero ler" books={shelves.wantToRead} onMoveBook={moveBook} />
+                <Shelf title="Já lidos" books={shelves.read} onMoveBook={moveBook} />
               </div>
             }
           />
