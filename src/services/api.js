@@ -1,14 +1,14 @@
 import axios from 'axios';
 
 const API_BASE_URL = 'https://api-books-dot-api-samples-423102.uc.r.appspot.com/api';
-const API_TOKEN = '101010'; // Seu RA como chave de autorização
+const API_TOKEN = '101010'; 
 
 export const fetchBooks = async () => {
   try {
     const response = await axios.get(`${API_BASE_URL}/books`, {
       headers: {
-        Authorization: `Bearer ${API_TOKEN}`, // Use "Bearer" antes do RA
-        Accept: 'application/json', // Cabeçalho adicional conforme visto no comando curl
+        Authorization: `Bearer ${API_TOKEN}`, 
+        Accept: 'application/json', 
       },
     });
     return response.data;
@@ -22,10 +22,10 @@ export const searchBooks = async (query) => {
   try {
     const response = await axios.get(`${API_BASE_URL}/books`, {
       headers: {
-        Authorization: `Bearer ${API_TOKEN}`, // Use "Bearer" antes do RA
-        Accept: 'application/json', // Cabeçalho adicional
+        Authorization: `Bearer ${API_TOKEN}`,
+        Accept: 'application/json', 
       },
-      params: { q: query },
+      params: { q: query },  // Certifique-se de que a API usa o parâmetro 'q' para a pesquisa
     });
     return response.data;
   } catch (error) {
@@ -34,12 +34,13 @@ export const searchBooks = async (query) => {
   }
 };
 
+
 export const fetchBookDetails = async (bookId) => {
   try {
     const response = await axios.get(`${API_BASE_URL}/books/${bookId}`, {
       headers: {
-        Authorization: `Bearer ${API_TOKEN}`, // Use "Bearer" antes do RA
-        Accept: 'application/json', // Cabeçalho adicional
+        Authorization: `Bearer ${API_TOKEN}`, 
+        Accept: 'application/json', 
       },
     });
     return response.data;
@@ -47,4 +48,7 @@ export const fetchBookDetails = async (bookId) => {
     console.error("Erro ao obter detalhes do livro:", error);
     return null;
   }
+
 };
+
+
