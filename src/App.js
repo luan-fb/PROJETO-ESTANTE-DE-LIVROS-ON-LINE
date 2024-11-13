@@ -13,35 +13,46 @@ function App() {
     read: [],
   });
 
+  // Carregar livros do localStorage ou da API
   useEffect(() => {
-    const loadBooks = async () => {
-      const allBooks = await fetchBooks();
-      if (Array.isArray(allBooks)) {
-        const updatedShelves = {
-          currentlyReading: allBooks.filter((book) => book.shelf === 'currentlyReading'),
-          wantToRead: allBooks.filter((book) => book.shelf === 'wantToRead'),
-          read: allBooks.filter((book) => book.shelf === 'read'),
-        };
-        setShelves(updatedShelves);
-        setBooks(allBooks);
-      }
-    };
-
-    loadBooks();
+    const storedBooks = JSON.parse(localStorage.getItem('books'));
+    if (storedBooks) {
+      setBooks(storedBooks);
+      updateShelves(storedBooks); // Atualizar as estantes com os livros armazenados
+    } else {
+      loadBooks();
+    }
   }, []);
 
-  const moveBook = (bookId, shelfName) => {
-    setShelves((prevShelves) => {
-      const updatedShelves = { ...prevShelves };
-      const bookToMove = books.find((book) => book.id === bookId);
-      if (!bookToMove) return prevShelves;
+  // Salvar livros no localStorage quando `books` muda
+  useEffect(() => {
+    localStorage.setItem('books', JSON.stringify(books));
+    updateShelves(books); // Atualizar as estantes sempre que `books` muda
+  }, [books]);
 
-      Object.keys(updatedShelves).forEach((shelf) => {
-        updatedShelves[shelf] = updatedShelves[shelf].filter((book) => book.id !== bookId);
-      });
-      updatedShelves[shelfName].push({ ...bookToMove, shelf: shelfName });
-      return updatedShelves;
+  const loadBooks = async () => {
+    const allBooks = await fetchBooks();
+    if (Array.isArray(allBooks)) {
+      setBooks(allBooks);
+      updateShelves(allBooks);
+    }
+  };
+
+  // Função para atualizar as estantes com base no estado atual de `books`
+  const updateShelves = (books) => {
+    setShelves({
+      currentlyReading: books.filter((book) => book.shelf === 'currentlyReading'),
+      wantToRead: books.filter((book) => book.shelf === 'wantToRead'),
+      read: books.filter((book) => book.shelf === 'read'),
     });
+  };
+
+  const moveBook = (bookId, shelfName) => {
+    setBooks((prevBooks) =>
+      prevBooks.map((book) =>
+        book.id === bookId ? { ...book, shelf: shelfName } : book
+      )
+    );
   };
 
   return (

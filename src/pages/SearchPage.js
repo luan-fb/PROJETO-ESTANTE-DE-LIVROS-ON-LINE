@@ -13,7 +13,7 @@ const SearchPage = ({ onMoveBook }) => {
     if (newQuery) {
       const foundBooks = await searchBooks(newQuery);
   
-      // Filtragem manual no frontend, caso a API não filtre corretamente
+      
       const filteredBooks = foundBooks.filter(book => 
         book.title.toLowerCase().includes(newQuery) ||
         book.authors?.some(author => author.toLowerCase().includes(newQuery))
