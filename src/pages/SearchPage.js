@@ -42,7 +42,6 @@ const SearchPage = ({ onMoveBook }) => {
       <div className="row">
         {results.map((book) => (
           <div key={book.id} className="col-md-4 mb-4">
-            {/* Utilizando o componente Book para exibir o livro com imagem */}
             <Book book={book} onMoveBook={onMoveBook} />
           </div>
         ))}

@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify'; 
+import 'react-toastify/dist/ReactToastify.css'; 
+import { FaHome, FaSearch, FaBook } from 'react-icons/fa'; 
 import { fetchBooks } from './services/api';
 import HomePage from './pages/HomePage';
 import SearchPage from './pages/SearchPage';
@@ -13,7 +16,6 @@ function App() {
     read: [],
   });
 
-  
   useEffect(() => {
     const storedBooks = JSON.parse(localStorage.getItem('books'));
     if (storedBooks) {
@@ -24,7 +26,6 @@ function App() {
     }
   }, []);
 
-  
   useEffect(() => {
     localStorage.setItem('books', JSON.stringify(books));
     updateShelves(books); 
@@ -38,7 +39,6 @@ function App() {
     }
   };
 
-  
   const updateShelves = (books) => {
     setShelves({
       currentlyReading: books.filter((book) => book.shelf === 'currentlyReading'),
@@ -53,23 +53,34 @@ function App() {
         book.id === bookId ? { ...book, shelf: shelfName } : book
       )
     );
+
+    
+    toast.success(`Livro movido para ${shelfName === 'currentlyReading' ? 'Estou lendo' : shelfName === 'wantToRead' ? 'Quero ler' : 'Já lido'}`);
   };
 
   return (
     <Router>
       <div>
+        <ToastContainer position="top-right" autoClose={3000} /> 
+
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <a className="navbar-brand" href="#">Estante de Livros</a>
           <div className="collapse navbar-collapse">
             <ul className="navbar-nav">
               <li className="nav-item">
-                <Link className="nav-link" to="/">Início</Link>
+                <Link className="nav-link" to="/">
+                  <FaHome style={{ marginRight: '5px' }} /> Início
+                </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/search">Pesquisa</Link>
+                <Link className="nav-link" to="/search">
+                  <FaSearch style={{ marginRight: '5px' }} /> Pesquisa
+                </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/shelf">Prateleira</Link>
+                <Link className="nav-link" to="/shelf">
+                  <FaBook style={{ marginRight: '5px' }} /> Prateleira
+                </Link>
               </li>
             </ul>
           </div>
