@@ -1,30 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { searchBooks } from '../services/api';
 import Book from '../components/Book';
+import { debounce } from '../utils/utils';
+
 
 const SearchPage = ({ onMoveBook }) => {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
+  const [loading, setLoading] = useState(false); 
 
-  const handleSearch = async (event) => {
-    const newQuery = event.target.value.toLowerCase();
+  const handleSearch = useCallback(
+    debounce(async (newQuery) => {
+      if (newQuery) {
+        setLoading(true); 
+        const foundBooks = await searchBooks(newQuery);
+
+        const filteredBooks = foundBooks.filter((book) =>
+          book.title.toLowerCase().includes(newQuery.toLowerCase()) ||
+          book.authors?.some((author) => author.toLowerCase().includes(newQuery.toLowerCase()))
+        );
+
+        setResults(filteredBooks);
+        setLoading(false); 
+      } else {
+        setResults([]);
+      }
+    }, 500),
+    [] 
+  );
+
+  const handleChange = (event) => {
+    const newQuery = event.target.value;
     setQuery(newQuery);
-  
-    if (newQuery) {
-      const foundBooks = await searchBooks(newQuery);
-  
-      
-      const filteredBooks = foundBooks.filter(book => 
-        book.title.toLowerCase().includes(newQuery) ||
-        book.authors?.some(author => author.toLowerCase().includes(newQuery))
-      );
-  
-      setResults(filteredBooks);
-    } else {
-      setResults([]);
-    }
+    handleSearch(newQuery); 
   };
-  
 
   return (
     <div className="container mt-5">
@@ -34,18 +43,26 @@ const SearchPage = ({ onMoveBook }) => {
           type="text"
           className="form-control"
           value={query}
-          onChange={handleSearch}
+          onChange={handleChange}
           placeholder="Buscar"
         />
       </div>
 
-      <div className="row">
-        {results.map((book) => (
-          <div key={book.id} className="col-md-4 mb-4">
-            <Book book={book} onMoveBook={onMoveBook} />
+      {loading ? (
+        <div className="text-center">
+          <div className="spinner-border text-primary" role="status">
+            <span className="sr-only">Carregando...</span>
           </div>
-        ))}
-      </div>
+        </div>
+      ) : (
+        <div className="row">
+          {results.map((book) => (
+            <div key={book.id} className="col-md-4 mb-4">
+              <Book book={book} onMoveBook={onMoveBook} />
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
