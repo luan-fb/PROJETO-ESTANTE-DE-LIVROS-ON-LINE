@@ -13,21 +13,21 @@ function App() {
     read: [],
   });
 
-  // Carregar livros do localStorage ou da API
+  
   useEffect(() => {
     const storedBooks = JSON.parse(localStorage.getItem('books'));
     if (storedBooks) {
       setBooks(storedBooks);
-      updateShelves(storedBooks); // Atualizar as estantes com os livros armazenados
+      updateShelves(storedBooks); 
     } else {
       loadBooks();
     }
   }, []);
 
-  // Salvar livros no localStorage quando `books` muda
+  
   useEffect(() => {
     localStorage.setItem('books', JSON.stringify(books));
-    updateShelves(books); // Atualizar as estantes sempre que `books` muda
+    updateShelves(books); 
   }, [books]);
 
   const loadBooks = async () => {
@@ -38,7 +38,7 @@ function App() {
     }
   };
 
-  // Função para atualizar as estantes com base no estado atual de `books`
+  
   const updateShelves = (books) => {
     setShelves({
       currentlyReading: books.filter((book) => book.shelf === 'currentlyReading'),
