@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estante de Livros Online</title>
-</head>
-<body>
-    <h1><strong>Estante de Livros Online 📚</strong></h1>
+
+<h1><strong>Estante de Livros Online 📚</strong></h1>
 
 <p>
         <a href="https://seu-usuario.github.io/PROJETO-ESTANTE-DE-LIVROS-ON-LINE/" target="_blank">
@@ -130,8 +123,6 @@
 <hr />
 
 
-    
-
 <h2 id="como-executar-o-projeto"><strong>⚙️ Como Executar o Projeto</strong></h2>
     <ol>
         <li>Acesse a pasta do projeto:
@@ -192,8 +183,7 @@ src/
     <p>Para dúvidas ou sugestões, entre em contato via <a href="mailto:seu-email@example.com">seu-email@example.com</a>.</p>
     <hr />
 
-    <h2 id="licença"><strong>📜 Licença</strong></h2>
+<h2 id="licença"><strong>📜 Licença</strong></h2>
     <p>Este projeto está licenciado sob a <a href="LICENSE" target="_blank">MIT License</a>.</p>
     <hr />
-</body>
-</html>
+
