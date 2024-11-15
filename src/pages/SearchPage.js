@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { searchBooks } from '../services/api';
 import Book from '../components/Book';
-import { debounce } from '../utils/utils';
+import { debounce } from '../utils/utils.js';
 
 
 const SearchPage = ({ onMoveBook }) => {
@@ -13,15 +13,21 @@ const SearchPage = ({ onMoveBook }) => {
     debounce(async (newQuery) => {
       if (newQuery) {
         setLoading(true); 
-        const foundBooks = await searchBooks(newQuery);
+        try {
+          const foundBooks = await searchBooks(newQuery);
 
-        const filteredBooks = foundBooks.filter((book) =>
-          book.title.toLowerCase().includes(newQuery.toLowerCase()) ||
-          book.authors?.some((author) => author.toLowerCase().includes(newQuery.toLowerCase()))
-        );
+          const filteredBooks = foundBooks.filter((book) =>
+            book.title.toLowerCase().includes(newQuery.toLowerCase()) ||
+            book.authors?.some((author) => author.toLowerCase().includes(newQuery.toLowerCase()))
+          );
 
-        setResults(filteredBooks);
-        setLoading(false); 
+          setResults(filteredBooks);
+        } catch (error) {
+          console.error('Erro ao buscar livros:', error);
+          setResults([]);
+        } finally {
+          setLoading(false); 
+        }
       } else {
         setResults([]);
       }
@@ -55,13 +61,22 @@ const SearchPage = ({ onMoveBook }) => {
           </div>
         </div>
       ) : (
-        <div className="row">
-          {results.map((book) => (
-            <div key={book.id} className="col-md-4 mb-4">
-              <Book book={book} onMoveBook={onMoveBook} />
+        <>
+          
+          {!loading && results.length === 0 && query && (
+            <div className="alert alert-warning" role="alert">
+              Nenhum livro encontrado para "{query}". Tente outra busca.
             </div>
-          ))}
-        </div>
+          )}
+
+          <div className="row">
+            {results.map((book) => (
+              <div key={book.id} className="col-md-4 mb-4">
+                <Book book={book} onMoveBook={onMoveBook} />
+              </div>
+            ))}
+          </div>
+        </>
       )}
     </div>
   );
