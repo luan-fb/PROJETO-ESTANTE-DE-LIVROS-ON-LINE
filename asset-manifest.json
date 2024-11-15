@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/projeto-estante-de-livros-on-line/static/css/main.f029a054.css",
-    "main.js": "/projeto-estante-de-livros-on-line/static/js/main.0275a7b3.js",
-    "index.html": "/projeto-estante-de-livros-on-line/index.html",
-    "main.f029a054.css.map": "/projeto-estante-de-livros-on-line/static/css/main.f029a054.css.map",
-    "main.0275a7b3.js.map": "/projeto-estante-de-livros-on-line/static/js/main.0275a7b3.js.map"
+    "main.css": "/PROJETO-ESTANTE-DE-LIVROS-ON-LINE/static/css/main.f029a054.css",
+    "main.js": "/PROJETO-ESTANTE-DE-LIVROS-ON-LINE/static/js/main.0275a7b3.js",
+    "index.html": "/PROJETO-ESTANTE-DE-LIVROS-ON-LINE/index.html",
+    "main.f029a054.css.map": "/PROJETO-ESTANTE-DE-LIVROS-ON-LINE/static/css/main.f029a054.css.map",
+    "main.0275a7b3.js.map": "/PROJETO-ESTANTE-DE-LIVROS-ON-LINE/static/js/main.0275a7b3.js.map"
   },
   "entrypoints": [
     "static/css/main.f029a054.css",
