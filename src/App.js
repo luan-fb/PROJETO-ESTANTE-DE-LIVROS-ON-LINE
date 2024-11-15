@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify'; 
 import 'react-toastify/dist/ReactToastify.css'; 
 import { FaHome, FaSearch, FaBook } from 'react-icons/fa'; 
@@ -54,12 +54,11 @@ function App() {
       )
     );
 
-    
     toast.success(`Livro movido para ${shelfName === 'currentlyReading' ? 'Estou lendo' : shelfName === 'wantToRead' ? 'Quero ler' : 'Já lido'}`);
   };
 
   return (
-    <Router>
+    <Router basename="/PROJETO-ESTANTE-DE-LIVROS-ON-LINE">
       <div>
         <ToastContainer position="top-right" autoClose={3000} /> 
 
