@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/projeto-estante-de-livros-on-line/static/css/main.f029a054.css",
+    "main.js": "/projeto-estante-de-livros-on-line/static/js/main.0275a7b3.js",
+    "index.html": "/projeto-estante-de-livros-on-line/index.html",
+    "main.f029a054.css.map": "/projeto-estante-de-livros-on-line/static/css/main.f029a054.css.map",
+    "main.0275a7b3.js.map": "/projeto-estante-de-livros-on-line/static/js/main.0275a7b3.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f029a054.css",
+    "static/js/main.0275a7b3.js"
+  ]
+}
