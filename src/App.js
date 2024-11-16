@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify'; 
 import 'react-toastify/dist/ReactToastify.css'; 
 import { FaHome, FaSearch, FaBook } from 'react-icons/fa'; 
@@ -58,7 +58,7 @@ function App() {
   };
 
   return (
-    <Router basename="/PROJETO-ESTANTE-DE-LIVROS-ON-LINE">
+    <Router>
       <div>
         <ToastContainer position="top-right" autoClose={3000} /> 
 
