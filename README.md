@@ -2,7 +2,7 @@
 <h1><strong>Estante de Livros Online 📚</strong></h1>
 
 <p>
-        <a href="https://seu-usuario.github.io/PROJETO-ESTANTE-DE-LIVROS-ON-LINE/" target="_blank">
+        <a href="https://luan-fb.github.io/PROJETO-ESTANTE-DE-LIVROS-ON-LINE/" target="_blank">
             <img src="https://img.shields.io/badge/GitHub-Pages-blue" alt="GitHub Pages">
         </a>
         <a href="LICENSE" target="_blank">
@@ -13,7 +13,7 @@
 <p>Bem-vindo à <strong>Estante de Livros Online</strong>, uma aplicação moderna e intuitiva para organizar seus livros. Com uma interface simples, você pode gerenciar suas leituras, adicionar novos livros e categorizar facilmente entre "Estou lendo", "Quero ler" e "Já lido".</p>
 
  <p>Acesse o projeto online: 
-        <a href="https://seu-usuario.github.io/PROJETO-ESTANTE-DE-LIVROS-ON-LINE/" target="_blank">
+        <a href="https://luan-fb.github.io/PROJETO-ESTANTE-DE-LIVROS-ON-LINE/" target="_blank">
             Estante de Livros Online
         </a>
  </p>
@@ -46,13 +46,13 @@
 
 <h2 id="preview"><strong>🖼️ Preview</strong></h2>
     <h3>Página Inicial</h3>
-    <img src="assets/homepage.png" alt="Página Inicial" style="border: 1px solid #ddd; border-radius: 5px; padding: 5px; max-width: 100%;">
+    <img src="src/img/paginainicial.png" alt="Página Inicial" style="border: 1px solid #ddd; border-radius: 5px; padding: 5px; max-width: 100%;">
 
 <h3>Página de Busca</h3>
-    <img src="assets/searchpage.png" alt="Página de Busca" style="border: 1px solid #ddd; border-radius: 5px; padding: 5px; max-width: 100%;">
+    <img src="src/img/paginadebusca.gif" alt="Página de Busca" style="border: 1px solid #ddd; border-radius: 5px; padding: 5px; max-width: 100%;">
 
 <h3>Movimentação de Livros</h3>
-    <img src="assets/move-books.gif" alt="Movimentação de Livros" style="border: 1px solid #ddd; border-radius: 5px; padding: 5px; max-width: 100%;">
+    <img src="src/img/movimentaçãodelivros.gif" alt="Movimentação de Livros" style="border: 1px solid #ddd; border-radius: 5px; padding: 5px; max-width: 100%;">
     <hr />
 
 <h2 id="funcionalidades"><strong>🛠️ Funcionalidades</strong></h2>
@@ -180,7 +180,7 @@ src/
     <ul>
         <li><strong>Luan Ferreira</strong> - <a href="https://github.com/luan-fb" target="_blank">GitHub</a></li>
     </ul>
-    <p>Para dúvidas ou sugestões, entre em contato via <a href="mailto:seu-email@example.com">seu-email@example.com</a>.</p>
+    <p>Para dúvidas ou sugestões, entre em contato via: <a href="mailto:luanferreura1@gmail.com">Email</a></p>
     <hr />
 
 <h2 id="licença"><strong>📜 Licença</strong></h2>
